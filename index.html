@@ -30,13 +30,13 @@
 		<div v-show="!vencedor" class="alert alert-danger my-3" role="alert"><h3 class="alert-heading">Você perdeu! 😭</h3></div>
 	</div>
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="!jogoativo || mostraresultado">
-		<button type="button" class="btn btn-primary my-3" @click="zerar(true)">INICIAR NOVO JOGO</button>
+		<button type="button" class="btn btn-lg btn-primary my-3" @click="zerar(true)">INICIAR NOVO JOGO</button>
 	</div>
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="jogoativo">
-		<button type="button" class="btn btn-danger m-3" @click="ataque(false)">ATAQUE</button>
-		<button type="button" class="btn btn-warning m-3" @click="ataque(true)">ATAQUE ESPECIAL</button>
-		<button type="button" class="btn btn-success m-3" @click="curar()">CURAR</button>
-		<button type="button" class="btn btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
+		<button type="button" class="btn btn-lg btn-danger m-3" @click="ataque(false)">ATAQUE</button>
+		<button type="button" class="btn btn-lg btn-warning m-3" @click="ataque(true)">ATAQUE ESPECIAL</button>
+		<button type="button" class="btn btn-lg btn-success m-3" @click="curar()">CURAR</button>
+		<button type="button" class="btn btn-lg btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
 	</div>
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-column align-items-stretch" v-if="relatorio.length !== 0">
 		<ul class="list-group my-3">
