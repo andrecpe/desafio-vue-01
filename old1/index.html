@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Caçador de Monstros</title>
+	<link rel="stylesheet" href="vue.css">
+</head>
+<body>
+<div id="app">
+	<div id="main">
+		<div class="grupo">
+			<div id="jogador" class="mostrador">
+				<h2 class="titulo">Jogador</h2>
+				<div class="barra">
+					<div class="sub" :style="{width: lifejogador + '%', backgroundColor: corbarra(true)}"></div>
+				</div>
+				<div>{{ lifejogador }}%</div>
+			</div>
+			<div id="monstro" class="mostrador">
+				<h2 class="titulo">Monstro</h2>
+				<div class="barra">
+					<div class="sub" :style="{width: lifemonstro + '%', backgroundColor: corbarra(false)}"></div>
+				</div>
+				<div>{{ lifemonstro }}%</div>
+			</div>
+		</div>
+		<div class="grupo" v-show="mostraresultado">
+			<div v-show="vencedor" style="background-color: blue;" class="resultado">Você venceu!!! :)</div>
+			<div v-show="!vencedor" style="background-color: red;" class="resultado">Você perdeu! :(</div>
+		</div>
+		<div class="grupo" v-show="!jogoativo || mostraresultado">
+			<button type="button" class="btn0" @click="zerar(true)">INICIAR NOVO JOGO</button>
+		</div>
+		<div class="grupo" v-show="jogoativo">
+			<div class="sub">
+				<button type="button" class="btn1" @click="ataque(false)">ATAQUE</button>
+				<button type="button" class="btn2" @click="ataque(true)">ATAQUE ESPECIAL</button>
+				<button type="button" class="btn3" @click="curar()">CURAR</button>
+				<button type="button" class="btn4" @click="zerar(false)">DESISTIR</button>
+			</div>
+		</div>
+		<div class="grupo" v-if="relatorio.length !== 0">
+			<ul>
+				<li v-for="msg in relatorio">{{ msg }}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script src="vue.js"></script>
+</body>
+</html>

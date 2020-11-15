@@ -40,7 +40,7 @@ new Vue({
         },
         corbarra(tipo) {
             let cor = tipo ? this.lifejogador : this.lifemonstro
-            return cor > 20 ? 'bg-success' : 'bg-danger'
+            return cor > 20 ? 'limegreen' : 'orangered'
         },
         sorteio (min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
