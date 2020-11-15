@@ -5,6 +5,7 @@ new Vue({
         playerLife: 100,
         monsterLife: 100,
         logs: [],
+        stack: [],
     },
     computed: {
         hasResult() {

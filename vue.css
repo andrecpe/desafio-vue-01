@@ -7,12 +7,12 @@
 }
 
 .btn{
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 .h2 {
     font-weight: 300;
 }
 
 .list-group-item {
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
