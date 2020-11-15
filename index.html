@@ -13,13 +13,13 @@
 		<div class="d-flex flex-row justify-content-around my-3">
 			<div class="d-flex flex-column flex-grow-1 align-content-center mx-4">
 				<h2 class="h2">Jogador</h2>
-				<div class="progress">
+				<div class="progress mb-3">
 					<div class="progress-bar" :class="corbarra(true)" role="progressbar" :style="{width: lifejogador+'%'}" :aria-valuenow="lifejogador" aria-valuemin="0" aria-valuemax="100">{{ lifejogador }}%</div>
 				</div>
 			</div>
 			<div class="d-flex flex-column flex-grow-1 align-content-center mx-4">
 				<h2 class="h2">Monstro</h2>
-				<div class="progress">
+				<div class="progress mb-3">
 					<div class="progress-bar" :class="corbarra(false)" role="progressbar" :style="{width: lifemonstro+'%'}" :aria-valuenow="lifemonstro" aria-valuemin="0" aria-valuemax="100">{{ lifemonstro }}%</div>
 				</div>
 			</div>
@@ -38,9 +38,9 @@
 		<button type="button" class="btn btn-success m-3" @click="curar()">CURAR</button>
 		<button type="button" class="btn btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
 	</div>
-	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-column align-items-center" v-if="relatorio.length !== 0">
-		<ul class="list-group my-3 d-flex flex-column-reverse align-items-stretch">
-			<li v-for="(msg, i) in relatorio" class="list-group-item align-self-stretch flex-grow-1" :class="rela(i)">{{ msg }}</li>
+	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-column align-items-stretch" v-if="relatorio.length !== 0">
+		<ul class="list-group my-3">
+			<li v-for="(msg, i) in relatorio" class="list-group-item text-center" :class="rela(i)">{{ msg }}</li>
 		</ul>
 	</div>
 </div>

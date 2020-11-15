@@ -13,23 +13,23 @@ new Vue({
             let jogador = tipo ? 9 : 6
             let monstro = 8
 
-            jogador = this.sorteio(jogador-5, jogador)
-            this.lifemonstro -= jogador
-            this.relatorio.push(`JOGADOR ATINGIU MONSTRO COM ${jogador}`)
             monstro = this.sorteio(monstro-5, monstro)
             this.lifejogador -= monstro
-            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
+            this.relatorio.unshift(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
+            jogador = this.sorteio(jogador-5, jogador)
+            this.lifemonstro -= jogador
+            this.relatorio.unshift(`JOGADOR ATINGIU MONSTRO COM ${jogador}`)
         },
         curar() {
             let jogador = 9
             let monstro = 7
 
-            jogador = this.sorteio(jogador-5,jogador)
-            this.lifejogador += jogador
-            this.relatorio.push(`JOGADOR GANHOU FORÇA DE ${jogador}`)
             monstro = this.sorteio(monstro-5,monstro)
             this.lifejogador -= monstro
-            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
+            this.relatorio.unshift(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
+            jogador = this.sorteio(jogador-5,jogador)
+            this.lifejogador += jogador
+            this.relatorio.unshift(`JOGADOR GANHOU FORÇA DE ${jogador}`)
         },
         zerar(tipo) {
             this.jogoativo = tipo
