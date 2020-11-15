@@ -1,75 +1,53 @@
 new Vue({
-
     el: '#app',
     data: {
-        lifemonstro: 100,
-        lifejogador: 100,
-        relatorio: [],
-        jogoativo: false,
-        mostraresultado: false,
-        vencedor: false,
+        running: false,
+        playerLife: 100,
+        monsterLife: 100,
+        logs: [],
+    },
+    computed: {
+        hasResult() {
+            return this.playerLife === 0 || this.monsterLife === 0
+        }
     },
     methods: {
-        ataque(tipo) {
-            let jogador = tipo ? 9 : 6
-            let monstro = 8
-
-            monstro = this.sorteio(monstro - 5, monstro)
-            this.lifejogador -= monstro
-            this.relatorio.unshift(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
-            jogador = this.sorteio(jogador - 5, jogador)
-            this.lifemonstro -= jogador
-            this.relatorio.unshift(`JOGADOR ATINGIU MONSTRO COM ${jogador}`)
+        startGame() {
+            this.running = true
+            this.playerLife = 100
+            this.monsterLife = 100
+            this.logs = []
         },
-        curar() {
-            let jogador = 9
-            let monstro = 7
-
-            monstro = this.sorteio(monstro - 5, monstro)
-            this.lifejogador -= monstro
-            this.relatorio.unshift(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
-            jogador = this.sorteio(jogador - 5, jogador)
-            this.lifejogador += jogador
-            this.relatorio.unshift(`JOGADOR GANHOU FORÇA DE ${jogador}`)
+        attack(especial) {
+            this.hurt('monsterLife', 5, 10, especial, 'Jogador', 'Monstro', 'list-group-item-success')
+            if (this.monsterLife > 0)
+                this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'list-group-item-danger')
         },
-        zerar(tipo) {
-            this.jogoativo = tipo
-            this.mostraresultado = false
-            this.lifemonstro = 100
-            this.lifejogador = 100
-            this.relatorio = []
+        hurt(prop, min, max, especial, source, target, cls) {
+            const plus = especial ? 5 : 0
+            const hurt = this.getRandom(min + plus, max + plus)
+            this[prop] = Math.max(this[prop] - hurt, 0)
+            this.registerLog(`${source} atingiu ${target} com ${hurt}.`, cls)
         },
-        corbarra(tipo) {
-            let cor = tipo ? this.lifejogador : this.lifemonstro
-            return cor > 20 ? 'bg-success' : 'bg-danger'
+        healAndHurt() {
+            this.heal(10, 15)
+            this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'list-group-item-danger')
         },
-        sorteio(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+        heal(min, max) {
+            const heal = this.getRandom(min, max)
+            this.playerLife = Math.min(this.playerLife + heal, 100)
+            this.registerLog(`Jogador ganhou força de ${heal}.`, 'list-group-item-success')
         },
-        rela(num) {
-            return num % 2 ? "list-group-item-danger" : "list-group-item-success"
-        }
+        getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        },
+        registerLog(text, cls) {
+            this.logs.unshift({text, cls})
+        },
     },
-    computed: {},
     watch: {
-        lifejogador(tam) {
-            if (tam <= 0) {
-                this.lifejogador = 0
-                if (this.lifemonstro > 0) {
-                    this.vencedor = false
-                    this.mostraresultado = true
-                    this.jogoativo = false
-                }
-            }
-            if (tam > 100) this.lifejogador = 100
+        hasResult(value) {
+            this.running = !value
         },
-        lifemonstro(tam) {
-            if (tam <= 0) {
-                this.vencedor = true
-                this.mostraresultado = true
-                this.jogoativo = false
-                this.lifemonstro = 0
-            }
-        }
     }
 })
