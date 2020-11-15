@@ -15,10 +15,10 @@ new Vue({
 
             jogador = this.sorteio(jogador-5, jogador)
             this.lifemonstro -= jogador
-            this.relatorio.push(`JOGADOR ATINGIU MONSTRO COM ${jogador}.`)
+            this.relatorio.push(`JOGADOR ATINGIU MONSTRO COM ${jogador}`)
             monstro = this.sorteio(monstro-5, monstro)
             this.lifejogador -= monstro
-            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}.`)
+            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
         },
         curar() {
             let jogador = 9
@@ -26,10 +26,10 @@ new Vue({
 
             jogador = this.sorteio(jogador-5,jogador)
             this.lifejogador += jogador
-            this.relatorio.push(`JOGADOR GANHOU FORÇA DE ${jogador}.`)
+            this.relatorio.push(`JOGADOR GANHOU FORÇA DE ${jogador}`)
             monstro = this.sorteio(monstro-5,monstro)
             this.lifejogador -= monstro
-            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}.`)
+            this.relatorio.push(`MONSTRO ATINGIU JOGADOR COM ${monstro}`)
         },
         zerar(tipo) {
             this.jogoativo = tipo
@@ -44,6 +44,9 @@ new Vue({
         },
         sorteio (min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
+        },
+        rela(num) {
+            return num%2 ? "list-group-item-danger" : "list-group-item-success"
         }
     },
     computed: {},

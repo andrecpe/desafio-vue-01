@@ -24,22 +24,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-show="mostraresultado">
-		<div v-show="vencedor" class="alert alert-success my-3" role="alert"><h3 class="alert-heading">Você venceu!!! :)</h3></div>
-		<div v-show="!vencedor" class="alert alert-danger my-3" role="alert"><h3 class="alert-heading">Você perdeu! :(</h3></div>
+	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="mostraresultado">
+		<div v-show="vencedor" class="alert alert-success my-3" role="alert"><h3 class="alert-heading">Você venceu!!! 😁</h3></div>
+		<div v-show="!vencedor" class="alert alert-danger my-3" role="alert"><h3 class="alert-heading">Você perdeu! 😭</h3></div>
 	</div>
-	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-show="!jogoativo || mostraresultado">
-		<button type="button" class="btn btn-primary my-2" @click="zerar(true)">INICIAR NOVO JOGO</button>
+	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="!jogoativo || mostraresultado">
+		<button type="button" class="btn btn-primary my-3" @click="zerar(true)">INICIAR NOVO JOGO</button>
 	</div>
-	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-show="jogoativo">
-		<button type="button" class="btn btn-danger m-2" @click="ataque(false)">ATAQUE</button>
-		<button type="button" class="btn btn-warning m-2" @click="ataque(true)">ATAQUE ESPECIAL</button>
-		<button type="button" class="btn btn-success m-2" @click="curar()">CURAR</button>
-		<button type="button" class="btn btn-secondary m-2" @click="zerar(false)">DESISTIR</button>
+	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="jogoativo">
+		<button type="button" class="btn btn-danger m-3" @click="ataque(false)">ATAQUE</button>
+		<button type="button" class="btn btn-warning m-3" @click="ataque(true)">ATAQUE ESPECIAL</button>
+		<button type="button" class="btn btn-success m-3" @click="curar()">CURAR</button>
+		<button type="button" class="btn btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
 	</div>
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="relatorio.length !== 0">
-		<ul>
-			<li v-for="msg in relatorio">{{ msg }}</li>
+		<ul class="list-group my-3">
+			<li v-for="(msg, i) in relatorio" class="list-group-item" :class="rela(i)">{{ msg }}</li>
 		</ul>
 	</div>
 </div>
