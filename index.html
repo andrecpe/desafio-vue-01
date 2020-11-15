@@ -5,12 +5,12 @@
 	<title>MATADOR DE MONSTROS</title>
 	<link rel="stylesheet" href="bootstrap.min.css">
 	<link rel="stylesheet" href="vue.css">
-	<link rel="icon" href="/favicon.ico" type="image/ico" sizes="16x16">
+	<link rel="icon" href=favicon.ico" type="image/ico" sizes="16x16">
 </head>
 <body>
 <div id="app">
 	<div class="container bg-light my-4 shadow border border-dark rounded">
-		<div class="d-flex flex-row justify-content-around my-3">
+		<div class="d-flex flex-column justify-content-around my-3">
 			<div class="d-flex flex-column flex-grow-1 align-content-center mx-4">
 				<h2 class="h2">Jogador</h2>
 				<div class="progress mb-3">
@@ -32,11 +32,15 @@
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="!jogoativo || mostraresultado">
 		<button type="button" class="btn btn-lg btn-primary my-3" @click="zerar(true)">INICIAR NOVO JOGO</button>
 	</div>
-	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-row justify-content-center" v-if="jogoativo">
-		<button type="button" class="btn btn-lg btn-danger m-3" @click="ataque(false)">ATAQUE</button>
-		<button type="button" class="btn btn-lg btn-warning m-3" @click="ataque(true)">ATAQUE ESPECIAL</button>
-		<button type="button" class="btn btn-lg btn-success m-3" @click="curar()">CURAR</button>
-		<button type="button" class="btn btn-lg btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
+	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-column justify-content-center" v-if="jogoativo">
+		<div class="d-flex flex-row justify-content-center">
+			<button type="button" class="btn btn-lg btn-danger m-3" @click="ataque(false)">ATAQUE</button>
+			<button type="button" class="btn btn-lg btn-warning m-3" @click="ataque(true)">ATAQUE ESPECIAL</button>
+		</div>
+		<div class="d-flex flex-row justify-content-center">
+			<button type="button" class="btn btn-lg btn-success m-3" @click="curar()">CURAR</button>
+			<button type="button" class="btn btn-lg btn-secondary m-3" @click="zerar(false)">DESISTIR</button>
+		</div>
 	</div>
 	<div class="container bg-light my-4 shadow border border-dark rounded d-flex flex-column align-items-stretch" v-if="relatorio.length !== 0">
 		<ul class="list-group my-3">
